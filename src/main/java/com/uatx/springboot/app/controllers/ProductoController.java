@@ -72,7 +72,7 @@ public class ProductoController {
 		return "ver";
 	}
 
-	@RequestMapping(value = "/listar", method = RequestMethod.GET)
+	@RequestMapping(value = {"/listar", "/buscartodos"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
 		Pageable pageRequest = PageRequest.of(page, 4);
@@ -86,7 +86,7 @@ public class ProductoController {
 		return "listar";
 	}
 
-	@RequestMapping(value = "/form")
+	@RequestMapping(value = {"/form", "/productos/page/nuevo-producto"})
 	public String crear(Map<String, Object> model) {
 
 		Producto producto = new Producto();
