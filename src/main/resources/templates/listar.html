@@ -19,6 +19,7 @@
 					<thead>
 						<tr>
 							<th>id</th>
+							<th>Foto</th>
 							<th>nombre</th>
 							<th>Empresa</th>
 							<th>Precio</th>
@@ -32,6 +33,9 @@
 					<tbody>
 						<tr th:each="producto: ${productos}">
 							<td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${producto.id}" th:text="${producto.id}"></a></td>
+							<td width="150" height="105" ><img th:if="${#strings.length(producto.foto) > 0}" class="img-thumbnail rounded float-left"
+								 th:width="100" height="100" th:src="@{'/uploads/' + ${producto.foto}}"
+								 th:alt="${producto.foto}" /></td>
 							<td th:text="${producto.nombre}"></td>
 							<td th:text="${producto.empresa}"></td>
 							<td th:text="${producto.precio}"></td>
