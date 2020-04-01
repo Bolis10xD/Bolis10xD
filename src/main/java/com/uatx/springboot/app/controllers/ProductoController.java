@@ -2,6 +2,7 @@ package com.uatx.springboot.app.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Date;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -90,6 +91,8 @@ public class ProductoController {
 	public String crear(Map<String, Object> model) {
 
 		Producto producto = new Producto();
+		producto.setStock(0.0);
+		producto.setCreateAt(new Date());
 		model.put("producto", producto);
 		model.put("titulo", "Formulario de Producto");
 		return "form";
@@ -147,7 +150,13 @@ public class ProductoController {
 
 		String mensajeFlash = (producto.getId() != null) ? "Producto editado con éxito!" : "Cliente creado con éxito!";
 
-		productoService.save(producto);
+
+		if(producto.getFoto() == null){
+			producto.setFoto("");
+			productoService.save(producto);
+		}else{
+			productoService.save(producto);
+		}
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:listar";
