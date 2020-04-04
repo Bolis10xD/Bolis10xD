@@ -1,4 +1,4 @@
-$(window).load(function () {
+$(window).ready(function () {
     $(function () {
         $("#file").change(function (e) {
             addImage(e);
